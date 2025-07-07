@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: chatbot-postgres
+    environment:
+      POSTGRES_DB: chatbot
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d chatbot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chatbot-api
+    ports:
+      - "5120:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=chatbot;Username=postgres;Password=postgres123
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./chatbot.Api/appsettings.json:/app/appsettings.json:ro
+
+volumes:
+  postgres_data: 

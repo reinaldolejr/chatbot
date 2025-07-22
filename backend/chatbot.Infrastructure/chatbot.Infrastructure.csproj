@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <ProjectReference Include="..\chatbot.Domain\chatbot.Domain.csproj" />
-    <ProjectReference Include="..\chatbot.Shared\chatbot.Shared.csproj" />
     <ProjectReference Include="..\chatbot.Application\chatbot.Application.csproj" />
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,5 @@
   <ItemGroup>
     <ProjectReference Include="..\chatbot.Application\chatbot.Application.csproj" />
     <ProjectReference Include="..\chatbot.Infrastructure\chatbot.Infrastructure.csproj" />
-    <ProjectReference Include="..\chatbot.Shared\chatbot.Shared.csproj" />
   </ItemGroup>
 </Project>

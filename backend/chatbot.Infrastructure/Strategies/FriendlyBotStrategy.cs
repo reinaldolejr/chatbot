@@ -5,46 +5,46 @@ namespace chatbot.Infrastructure.Strategies;
 
 public class FriendlyBotStrategy : IBotStrategy
 {
-    public string Name => "Amigável";
+    public string Name => "Friendly";
 
     public async Task<string> GenerateResponseAsync(Message userMessage, IEnumerable<Message> conversationHistory)
     {
         var userInput = userMessage.Content.ToLower();
         
-        // respostas baseadas em palavras-chave
-        if (userInput.Contains("olá") || userInput.Contains("oi") || userInput.Contains("eai"))
+        // answers based on keywords
+        if (userInput.Contains("hello") || userInput.Contains("hi") || userInput.Contains("hey"))
         {
-            return "Olá! Estou muito feliz em conversar com você! Como você está hoje?";
+            return "Hello! I'm very happy to chat with you! How are you today?";
         }
         
-        if (userInput.Contains("como você está"))
+        if (userInput.Contains("how are you"))
         {
-            return "Estou fantástico, obrigado por perguntar! Espero que você esteja tendo um dia maravilhoso também!";
+            return "I'm fantastic, thanks for asking! I hope you're having a wonderful day too!";
         }
         
-        if (userInput.Contains("ajuda") || userInput.Contains("suporte"))
+        if (userInput.Contains("help") || userInput.Contains("support"))
         {
-            return "Estou absolutamente feliz em ajudar você! O que posso fazer por você hoje?";
+            return "I'm absolutely happy to help you! What can I do for you today?";
         }
         
-        if (userInput.Contains("obrigado"))
+        if (userInput.Contains("thank you"))
         {
-            return "De nada! Estou muito feliz em ajudar. Há algo mais que você gostaria de conversar?";
+            return "You're welcome! I'm very happy to help. Is there anything else you'd like to talk about?";
         }
         
-        if (userInput.Contains("sair") )
+        if (userInput.Contains("bye") )
         {
-            return "Adeus! Foi um prazer conversar com você! Volte sempre - estarei aqui com um sorriso!";
+            return "Goodbye! It was a pleasure chatting with you! Come back anytime - I'll be here with a smile!";
         }
         
-        // respostas padrão se não houver resposta para a mensagem do usuário
+        // default answers if there is no answer for the user message
         var responses = new[]
         {
-            "Isso é realmente interessante! Me diga mais sobre isso!",
-            "Adoro como você pensa! O que fez você pensar sobre isso?",
-            "Isso é um ótimo ponto! Gostaria de ouvir suas opiniões sobre isso.",
-            "Você está absolutamente certo! Estou gostando muito da nossa conversa!",
-            "Isso é fascinante! Estou aprendendo muito conversando com você!"
+            "That's really interesting! Tell me more about it!",
+            "I love how you think! What made you think about that?",
+            "That's a great point! I'd love to hear your thoughts on it.",
+            "You're absolutely right! I'm really enjoying our conversation!",
+            "That's fascinating! I'm learning a lot talking with you!"
         };
         
         var random = new Random();

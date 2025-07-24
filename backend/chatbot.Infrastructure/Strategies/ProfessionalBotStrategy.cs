@@ -5,56 +5,56 @@ namespace chatbot.Infrastructure.Strategies;
 
 public class ProfessionalBotStrategy : IBotStrategy
 {
-    public string Name => "Profissional";
+    public string Name => "Professional";
 
     public async Task<string> GenerateResponseAsync(Message userMessage, IEnumerable<Message> conversationHistory)
     {
         var userInput = userMessage.Content.ToLower();
         
-        // respostas baseadas em palavras-chave
-        if (userInput.Contains("olá") || userInput.Contains("oi") || userInput.Contains("eai"))
+        // answers based on keywords
+        if (userInput.Contains("hello") || userInput.Contains("hi") || userInput.Contains("hey"))
         {
-            return "Olá. Estou aqui para ajudá-lo com qualquer consulta que você possa ter. Como posso ajudá-lo hoje?";
+            return "Hello. I am here to assist you with any inquiries you may have. How can I help you today?";
         }
         
-        if (userInput.Contains("como você está"))
+        if (userInput.Contains("how are you"))
         {
-            return "Estou funcionando perfeitamente, obrigado por perguntar. Como posso ajudar você hoje?";
+            return "I am functioning perfectly, thank you for asking. How can I assist you today?";
         }
         
-        if (userInput.Contains("ajuda") || userInput.Contains("suporte"))
+        if (userInput.Contains("help") || userInput.Contains("support"))
         {
-            return "Estou disponível para fornecer assistência. Por favor, especifique a natureza de sua consulta para que eu possa melhor atendê-lo.";
+            return "I am available to provide assistance. Please specify the nature of your inquiry so I can better assist you.";
         }
         
-        if (userInput.Contains("obrigado"))
+        if (userInput.Contains("thank you"))
         {
-            return "De nada. Estou aqui para ajudar. Há algo mais que você precisa?";
+            return "You're welcome. I am here to help. Is there anything else you need?";
         }
         
-        if (userInput.Contains("reunião") || userInput.Contains("agendar"))
+        if (userInput.Contains("meeting") || userInput.Contains("schedule"))
         {
-            return "Posso ajudar com agendamentos. Por favor, forneça os detalhes de suas necessidades de reunião.";
+            return "I can assist with scheduling. Please provide the details of your meeting requirements.";
         }
         
-        if (userInput.Contains("relatório") || userInput.Contains("dados"))
+        if (userInput.Contains("report") || userInput.Contains("data"))
         {
-            return "Posso ajudar com análise de dados e geração de relatórios. Qual informação específica você está procurando?";
+            return "I can assist with data analysis and report generation. What specific information are you looking for?";
         }
         
-        if (userInput.Contains("sair"))
+        if (userInput.Contains("bye"))
         {
-            return "Adeus. Obrigado por seu tempo. Tenha um dia produtivo.";
+            return "Goodbye. Thank you for your time. Have a productive day.";
         }
         
-        // respostas padrão se não houver resposta para a mensagem do usuário
+        // default answers if there is no answer for the user message
         var responses = new[]
         {
-            "Entendo sua consulta. Vou fornecer as informações relevantes.",
-            "Obrigado por sua mensagem. Estou processando sua solicitação e responderei conforme necessário.",
-            "Agradeço sua entrada. Como gostaria de proceder com esta questão?",
-            "Sua mensagem foi recebida. Estou aqui para ajudar com quaisquer outras perguntas.",
-            "Agradeço sua comunicação. Por favor, me informe se você precisa de suporte adicional."
+            "I understand your inquiry. I will provide the relevant information.",
+            "Thank you for your message. I am processing your request and will respond as necessary.",
+            "Thank you for your input. How would you like to proceed with this matter?",
+            "Your message has been received. I am here to help with any further questions.",
+            "Thank you for your communication. Please let me know if you need additional support."
         };
         
         var random = new Random();

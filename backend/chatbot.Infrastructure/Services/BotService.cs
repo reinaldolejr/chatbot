@@ -44,7 +44,7 @@ public class BotService : IBotService
             await _chatRepository.AddAsync(chat);
         }
 
-        // salvar mensagem do usuário
+        // save user message
         var userMessageEntity = new Message
         {
             Id = Guid.NewGuid(),
@@ -55,14 +55,14 @@ public class BotService : IBotService
         };
         await _messageRepository.AddAsync(userMessageEntity);
 
-        // obter histórico da conversa
+        // get conversation history
         var conversationHistory = await _messageRepository.GetAllAsync();
         var chatHistory = conversationHistory.Where(m => m.ChatId == chatId).OrderBy(m => m.Timestamp).ToList();
 
-        // gerar resposta do bot
+        // generate bot response
         var botResponse = await strategy.GenerateResponseAsync(userMessageEntity, chatHistory);
 
-        // salvar resposta do bot
+        // save bot response
         var botMessageEntity = new Message
         {
             Id = Guid.NewGuid(),
@@ -73,8 +73,8 @@ public class BotService : IBotService
         };
         await _messageRepository.AddAsync(botMessageEntity);
 
-        // finalizar o chat quando o usuário escrever "sair"
-        if (userMessage == "sair")
+        // finish chat when user writes "leave"
+        if (userMessage == "leave")
         {
             chat.EndedAt = DateTime.UtcNow;
             await _chatRepository.UpdateAsync(chat);
@@ -82,7 +82,7 @@ public class BotService : IBotService
 
         await _unitOfWork.SaveChangesAsync();
 
-        // envia mensagem para o usuário através do serviço de notificação
+        // send message to user through notification service
         var notificationMessage = new NotificationMessage
         {
             Type = "BotMessage",

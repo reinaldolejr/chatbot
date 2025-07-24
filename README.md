@@ -1,26 +1,25 @@
 # Chatbot API
 
-## Estrutura do Projeto
+## Project Structure
 
 - **chatbot.Api**
 - **chatbot.Application**
 - **chatbot.Domain**
 - **chatbot.Infrastructure**
 
-## Instruções de configuração
+## Setup Instructions
 
-### 1. Configurações
+### 1. Configuration
 
-**Ter o Docker instalado em sua máquina**
+**Make sure Docker is installed on your machine**
 
-
-1. Abra o terminal na pasta do projeto
+1. Open the terminal in the project folder
    ```sh
-   cd /caminho/para/sua/pasta/backend
+   cd /path/to/your/project/backend
    ```
-2. Executar o script `/scripts/setup-docker.sh`
-3. Criar a database named `chatbot`
-4. Atualizar a connection string no arquivo `chatbot.Api/appsettings.json`:
+2. Run the script `/scripts/setup-docker.sh`
+3. Create a database named `chatbot`
+4. Update the connection string in the file `chatbot.Api/appsettings.json`:
 
 ```json
 {
@@ -30,35 +29,33 @@
 }
 ```
 
-### 2. Applicar o migration
+### 2. Apply the migration
 
-
-#### Configuração inicial 
+#### Initial setup
 ```bash
-# instalar EF Core globalmente
+# install EF Core globally
 dotnet tool install --global dotnet-ef
 
-# commando para aplicar os migrations no banco
+# command to apply migrations to the database
 dotnet ef database update --project chatbot.Infrastructure --startup-project chatbot.Api
 ```
 
+# Chatbot Frontend with Next/React
 
-# Chatbot Frontend com Next/React
-
-1. **Abra o terminal na pasta do projeto**
+1. **Open the terminal in the project folder**
    ```sh
-   cd /caminho/para/sua/pasta/frontend
+   cd /path/to/your/project/frontend
    ```
 
-2. **Construa a imagem Docker:**
+2. **Build the Docker image:**
    ```sh
    docker build -t frontend .
    ```
 
-3. **Rode o container:**
+3. **Run the container:**
    ```sh
    docker run -p 3000:3000 frontend
    ```
 
-4. **Acesse no navegador:**
-   Abra [http://localhost:3000](http://localhost:3000)
+4. **Access in your browser:**
+   Open [http://localhost:3000](http://localhost:3000)
